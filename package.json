@@ -1,5 +1,5 @@
 {
-  "name": "react-notification",
+  "name": "react-smart-toast",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
