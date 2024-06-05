@@ -3,7 +3,7 @@ import Button from "./components/button";
 import SmartToast from "./components/smartToast";
 import styles from "./app.module.scss";
 
-const variants = ["primary", "success", "warning", "error"] as const;
+const variants = ["info", "success", "warning", "error"] as const;
 
 interface IToastTypes {
   id: number;
@@ -34,12 +34,12 @@ const App = () => {
           variant: "error",
         };
         break;
-      case "primary":
+      case "info":
         toastProperties = {
           id: list.length + 1,
           title: "Info",
           description: "This is a info toast component",
-          variant: "primary",
+          variant: "info",
         };
         break;
       case "warning":
