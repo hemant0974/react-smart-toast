@@ -1,18 +1,12 @@
 import Button from "./components/button";
-
-const flexStyle: React.CSSProperties = {
-  height: "100vh",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
+import styles from "./app.module.scss";
 
 const variants = ["primary", "success", "warning", "error"] as const;
 
 const App = () => {
   return (
-    <div style={flexStyle}>
-      <div style={{ display: "flex", gap: "1rem" }}>
+    <div className={styles.appWrapper}>
+      <div className={styles.btnContainer}>
         {variants.map((variants) => (
           <Button color={variants}>{variants}</Button>
         ))}
