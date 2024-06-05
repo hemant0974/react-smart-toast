@@ -1,22 +1,15 @@
 import { useState } from "react";
 import Button from "./components/button";
-import SmartToast from "./components/smartToast";
+import SmartToast, { IAllVariants, IToastTypes } from "./components/smartToast";
 import styles from "./app.module.scss";
 
 const variants = ["info", "success", "warning", "error"] as const;
-
-interface IToastTypes {
-  id: number;
-  title: string;
-  description: string;
-  variant: (typeof variants)[number];
-}
 
 const App = () => {
   const [list, setList] = useState<IToastTypes[]>([]);
   let toastProperties: IToastTypes | null = null;
 
-  const showToast = (type: (typeof variants)[number]) => {
+  const showToast = (type: IAllVariants) => {
     switch (type) {
       case "success":
         toastProperties = {
@@ -54,7 +47,7 @@ const App = () => {
     setList([...list, toastProperties]);
   };
 
-  const handleBtnClick = (variant: (typeof variants)[number]) => {
+  const handleBtnClick = (variant: IAllVariants) => {
     showToast(variant);
   };
 

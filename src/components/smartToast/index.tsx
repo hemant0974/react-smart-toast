@@ -1,8 +1,17 @@
 import { useCallback, useEffect } from "react";
 import styles from "./smartToast.module.scss";
 
-interface ISmartToast {
-  toastlist: any;
+export type IAllVariants = "info" | "success" | "warning" | "error";
+
+export interface IToastTypes {
+  id: number;
+  title: string;
+  description: string;
+  variant: IAllVariants;
+}
+
+interface ISmartToastProps {
+  toastlist: IToastTypes[];
   position:
     | "top-left"
     | "top-right"
@@ -10,10 +19,10 @@ interface ISmartToast {
     | "bottom-center"
     | "bottom-left"
     | "bottom-right";
-  setList: any;
+  setList: React.Dispatch<React.SetStateAction<IToastTypes[]>>;
 }
 
-const SmartToast = ({ toastlist, position, setList }: ISmartToast) => {
+const SmartToast = ({ toastlist, position, setList }: ISmartToastProps) => {
   const deleteToast = useCallback(
     (id: any) => {
       const toastListItem = toastlist.filter((e: any) => e.id !== id);
