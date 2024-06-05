@@ -5,9 +5,16 @@ import styles from "./app.module.scss";
 
 const variants = ["primary", "success", "warning", "error"] as const;
 
+interface IToastTypes {
+  id: number;
+  title: string;
+  description: string;
+  variant: (typeof variants)[number];
+}
+
 const App = () => {
-  const [list, setList] = useState<any>([]);
-  let toastProperties = null;
+  const [list, setList] = useState<IToastTypes[]>([]);
+  let toastProperties: IToastTypes | null = null;
 
   const showToast = (type: (typeof variants)[number]) => {
     switch (type) {
@@ -16,7 +23,7 @@ const App = () => {
           id: list.length + 1,
           title: "Success",
           description: "This is a success toast component",
-          backgroundColor: "#5cb85c",
+          variant: "success",
         };
         break;
       case "error":
@@ -24,7 +31,7 @@ const App = () => {
           id: list.length + 1,
           title: "Danger",
           description: "This is a danger toast component",
-          backgroundColor: "#d9534f",
+          variant: "error",
         };
         break;
       case "primary":
@@ -32,7 +39,7 @@ const App = () => {
           id: list.length + 1,
           title: "Info",
           description: "This is a info toast component",
-          backgroundColor: "#5bc0de",
+          variant: "primary",
         };
         break;
       case "warning":
@@ -40,11 +47,9 @@ const App = () => {
           id: list.length + 1,
           title: "Warning",
           description: "This is a warning toast component",
-          backgroundColor: "#f0ad4e",
+          variant: "warning",
         };
         break;
-      default:
-        toastProperties = [];
     }
     setList([...list, toastProperties]);
   };
