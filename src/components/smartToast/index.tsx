@@ -33,9 +33,9 @@ const SmartToast = ({ toastlist, position, setList }: ISmartToast) => {
       {toastlist.map((toast: any, index: number) => (
         <div
           key={index}
-          className={`${styles.notification} ${styles.toast} ${
-            styles[position]
-          } ${styles[toast.variant]}`}
+          className={`${styles.notification} ${styles[position]} ${
+            styles[toast.variant]
+          }`}
         >
           <button onClick={() => deleteToast(toast.id)}>X</button>
           <div>

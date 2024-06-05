@@ -3,19 +3,23 @@
   position: fixed;
   z-index: 10;
 
-  .buttom-right {
+  &.buttom-right {
     bottom: 1rem;
     right: 1rem;
     animation: toast-in-right 0.7s;
   }
 
   .notification {
+    min-height: 50px;
+    width: 250px;
+    padding: 10px 15px 10px 10px;
     margin-bottom: 1rem;
     border-radius: 4px;
     box-shadow: 0 0 10px #999;
-    color: #000;
     opacity: 0.9;
     transition: 0.3s ease;
+    color: #fff;
+    position: relative;
 
     button {
       padding: 1rem;
@@ -25,14 +29,11 @@
       color: #fff;
       opacity: 0.8;
       cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
 
-    &.toast {
-      height: 50px;
-      width: 365px;
-      color: #fff;
-      padding: 20px 15px 10px 10px;
-    }
     &.buttom-right {
       bottom: 1rem;
       right: 1rem;
