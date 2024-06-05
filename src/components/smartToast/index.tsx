@@ -3,7 +3,13 @@ import styles from "./smartToast.module.scss";
 
 interface ISmartToast {
   toastlist: any;
-  position: any;
+  position:
+    | "top-left"
+    | "top-right"
+    | "top-center"
+    | "bottom-center"
+    | "bottom-left"
+    | "bottom-right";
   setList: any;
 }
 
@@ -17,14 +23,13 @@ const SmartToast = ({ toastlist, position, setList }: ISmartToast) => {
   );
 
   useEffect(() => {
-    // const interval = setInterval(() => {
-    //   if (toastlist.length) {
-    //     deleteToast(toastlist[0].id);
-    //   }
-    // }, 3000);
-
+    const interval = setInterval(() => {
+      if (toastlist.length) {
+        deleteToast(toastlist[0].id);
+      }
+    }, 4000);
     return () => {
-      // clearInterval(interval);
+      clearInterval(interval);
     };
   }, [toastlist, deleteToast]);
 

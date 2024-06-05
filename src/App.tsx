@@ -67,7 +67,7 @@ const App = () => {
           </Button>
         ))}
       </div>
-      <SmartToast toastlist={list} position="buttom-right" setList={setList} />
+      <SmartToast toastlist={list} position="bottom-center" setList={setList} />
     </div>
   );
 };

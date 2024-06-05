@@ -3,9 +3,36 @@
   position: fixed;
   z-index: 10;
 
-  &.buttom-right {
+  &.top-left {
+    top: 1rem;
+    left: 1rem;
+    animation: toast-in-right 0.7s;
+  }
+  &.top-right {
+    top: 1rem;
+    right: 1rem;
+    animation: toast-in-right 0.7s;
+  }
+  &.top-center {
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: toast-in-center 0.7s;
+  }
+  &.bottom-center {
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: toast-in-center 0.7s;
+  }
+  &.bottom-right {
     bottom: 1rem;
     right: 1rem;
+    animation: toast-in-right 0.7s;
+  }
+  &.bottom-left {
+    bottom: 1rem;
+    left: 1rem;
     animation: toast-in-right 0.7s;
   }
 
@@ -34,11 +61,15 @@
       right: 0;
     }
 
-    &.buttom-right {
-      bottom: 1rem;
-      right: 1rem;
+    &.top-right,
+    &.bottom-right {
       animation: toast-in-right 0.7s;
     }
+    &.top-left,
+    &.bottom-left {
+      animation: toast-in-left 0.7s;
+    }
+
     &:hover {
       box-shadow: 0 0 12px #fff;
       opacity: 1;
@@ -50,7 +81,6 @@
       text-align: left;
       margin-top: 0;
       margin-bottom: 6px;
-      width: 300px;
       height: 18px;
     }
 
@@ -64,6 +94,22 @@
 @keyframes toast-in-right {
   from {
     transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes toast-in-center {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes toast-in-left {
+  from {
+    transform: translateX(-100%);
   }
   to {
     transform: translateX(0);
