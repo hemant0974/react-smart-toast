@@ -1,16 +1,17 @@
 import { useCallback, useEffect } from "react";
 import styles from "./smartToast.module.scss";
+import { variantClasses } from "../../constants/buttonList";
 
 export type IAllVariants = "info" | "success" | "warning" | "error";
 
 export interface IToastTypes {
-  id: number;
+  id: string;
   title: string;
   description: string;
   variant: IAllVariants;
 }
 
-interface ISmartToastProps {
+export interface ISmartToastProps {
   toastlist: IToastTypes[];
   position:
     | "top-left"
@@ -24,8 +25,8 @@ interface ISmartToastProps {
 
 const SmartToast = ({ toastlist, position, setList }: ISmartToastProps) => {
   const deleteToast = useCallback(
-    (id: any) => {
-      const toastListItem = toastlist.filter((e: any) => e.id !== id);
+    (id: string) => {
+      const toastListItem = toastlist.filter((e: IToastTypes) => e.id !== id);
       setList(toastListItem);
     },
     [toastlist, setList]
@@ -44,11 +45,11 @@ const SmartToast = ({ toastlist, position, setList }: ISmartToastProps) => {
 
   return (
     <div className={`${styles.container} ${styles[position]}`}>
-      {toastlist.map((toast: any, index: number) => (
+      {toastlist.map((toast) => (
         <div
-          key={index}
-          className={`${styles.notification} ${styles[position]} ${
-            styles[toast.variant]
+          key={toast.id}
+          className={`${styles.toastInner} ${styles[position]} ${
+            variantClasses[toast.variant]
           }`}
         >
           <button onClick={() => deleteToast(toast.id)}>X</button>

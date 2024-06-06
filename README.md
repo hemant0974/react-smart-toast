@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+App hosted on vercel :- https://react-smart-toast.vercel.app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Run project:-
+npm i
+npm start
 
-## Available Scripts
+#Docs
+React smart toast
 
-In the project directory, you can run:
+The "useSmartToast" custom hook provides an easy and flexible way to show toast notifications in a React application. It allows you to specify the initial position of the toast and provides methods to control and display the toast notifications dynamically.
 
-### `npm start`
+Initialization
+To initialize the hook, call useSmartToast with an options object:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+code:-
+const { toastSmart, toastPosition, setToastPosition, SmartToastComponent } = useSmartToast({
+position: "bottom-right",
+});
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+*toastSmart and *SmartToastComponent are mandatory and toastPosition, setToastPosition are optional.
 
-### `npm test`
+position: (optional) A string specifying the initial position of the toast. Possible values include:
+"top-left"
+"top-right"
+"top-center"
+"bottom-center"
+"bottom-left"
+"bottom-right"
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Return Values
+The hook returns an object with the following properties:
 
-### `npm run build`
+toastSmart: A function to show a toast notification. Call this function with a message and optional configuration.
+toastPosition: A string representing the current position of the toast notification.
+setToastPosition: A function to update the position of the toast notification.
+SmartToastComponent: A React component to be included in your application, which renders the toast notifications.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+e.g.
+toastSmart("Hello, this is a toast!", { subDesc: "Sub description optinal", type: "success" })
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+complete demo component code:-
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+import React from 'react';
+import { useSmartToast } from 'path-to-your-hook';
 
-### `npm run eject`
+const App = () => {
+const { toastSmart, setToastPosition, SmartToastComponent } = useSmartToast({
+position: "bottom-right",
+});
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+return (
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div>
+<button onClick={() => toastSmart("Hello, this is a toast!")}>
+Show Toast
+</button>
+<button onClick={() => setToastPosition("top-center")}>
+Move Toast to Top Center
+</button>
+<SmartToastComponent />
+</div>
+);
+};
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+export default App;

@@ -1,14 +1,23 @@
-import styles from "./button.module.scss";
+import { variantClasses } from "../../constants/buttonList";
 
 interface IProps {
   children: string | React.ReactNode;
   color?: "info" | "success" | "warning" | "error";
+  className?: string;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const Button = ({ children, color = "info", onClick = () => {} }: IProps) => {
+const Button = ({
+  children,
+  color = "info",
+  className,
+  onClick = () => {},
+}: IProps) => {
   return (
-    <button onClick={onClick} className={`${styles.button} ${styles[color]}`}>
+    <button
+      onClick={onClick}
+      className={`${variantClasses[color]} ${className}`}
+    >
       {children}
     </button>
   );

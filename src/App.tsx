@@ -1,11 +1,10 @@
-import React from "react";
-import HomeModule from "./modules/homeModule";
+import ToastModule from "./modules/toastModule";
 
 const App = () => {
   return (
-    <div>
-      <HomeModule />
-    </div>
+    <>
+      <ToastModule />
+    </>
   );
 };
 

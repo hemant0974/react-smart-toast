@@ -1,31 +1,48 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SmartToast, {
   IToastTypes,
   IAllVariants,
+  ISmartToastProps,
 } from "../components/smartToast";
+import { generateUniqueId } from "../utils/uniqueIdGenerator";
 
 interface ISmartToastOptions {
   type: IAllVariants;
   subDesc?: string;
 }
 
-const useSmartToast = () => {
-  const [list, setList] = useState<IToastTypes[]>([]);
+interface ISmartToastComponent {
+  position?: ISmartToastProps["position"];
+}
 
-  const toastSmart = (title: string, { type, subDesc }: ISmartToastOptions) => {
+const useSmartToast = (props: ISmartToastComponent) => {
+  const [list, setList] = useState<IToastTypes[]>([]);
+  const [position, setPosition] = useState<ISmartToastProps["position"]>(
+    props.position || "bottom-right"
+  );
+
+  const toastSmart = (
+    title: string,
+    options: ISmartToastOptions = {
+      type: "success",
+      subDesc: "",
+    }
+  ) => {
     const newToastOption = {} as IToastTypes;
     newToastOption.title = title;
-    newToastOption.variant = type;
-    newToastOption.description = subDesc || "";
-    newToastOption.id = list.length + 1;
+    newToastOption.variant = options?.type;
+    newToastOption.description = options?.subDesc || "";
+    newToastOption.id = generateUniqueId();
 
-    setList([...list, newToastOption]);
+    setList((prev) => [...prev, newToastOption]);
   };
 
   return {
     toastSmart,
-    SmartToastComponent: () => (
-      <SmartToast toastlist={list} position="bottom-center" setList={setList} />
+    toastPosition: position,
+    setToastPosition: setPosition,
+    SmartToastComponent: (
+      <SmartToast toastlist={list} setList={setList} position={position} />
     ),
   };
 };

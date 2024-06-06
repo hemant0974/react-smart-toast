@@ -15,14 +15,12 @@
   }
   &.top-center {
     top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 40%;
     animation: toast-in-center 0.7s;
   }
   &.bottom-center {
     bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 40%;
     animation: toast-in-center 0.7s;
   }
   &.bottom-right {
@@ -36,7 +34,7 @@
     animation: toast-in-right 0.7s;
   }
 
-  .notification {
+  .toastInner {
     min-height: 50px;
     width: 250px;
     padding: 10px 15px 10px 10px;
@@ -68,6 +66,10 @@
     &.top-left,
     &.bottom-left {
       animation: toast-in-left 0.7s;
+    }
+    &.top-center,
+    &.bottom-center {
+      animation: toast-in-center 0.7s;
     }
 
     &:hover {
@@ -104,7 +106,7 @@
     transform: translateY(-100%);
   }
   to {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 @keyframes toast-in-left {
@@ -114,17 +116,4 @@
   to {
     transform: translateX(0);
   }
-}
-
-.info {
-  background-color: hsl(210, 100%, 42%);
-}
-.success {
-  background-color: rgb(46, 125, 50);
-}
-.warning {
-  background-color: rgb(237, 108, 2);
-}
-.error {
-  background-color: rgb(211, 47, 47);
 }
