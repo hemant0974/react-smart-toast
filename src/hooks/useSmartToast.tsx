@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SmartToast, {
   IToastTypes,
   IAllVariants,
   ISmartToastProps,
 } from "../components/smartToast";
 import { generateUniqueId } from "../utils/uniqueIdGenerator";
+import { countDown } from "../utils/countDown";
 
 interface ISmartToastOptions {
   type: IAllVariants;
@@ -17,6 +18,7 @@ interface ISmartToastComponent {
 
 const useSmartToast = (props: ISmartToastComponent) => {
   const [list, setList] = useState<IToastTypes[]>([]);
+  const [expiredIds, setExpiredIds] = useState<string[]>([]);
   const [position, setPosition] = useState<ISmartToastProps["position"]>(
     props.position || "bottom-right"
   );
@@ -33,9 +35,18 @@ const useSmartToast = (props: ISmartToastComponent) => {
     newToastOption.variant = options?.type;
     newToastOption.description = options?.subDesc || "";
     newToastOption.id = generateUniqueId();
-
+    countDown(newToastOption.id, 4000).then((id) => {
+      setExpiredIds((prev) => [...prev, id as string]);
+    });
     setList((prev) => [...prev, newToastOption]);
   };
+
+  useEffect(() => {
+    expiredIds.forEach((id) => {
+      const toastListItem = list.filter((e: IToastTypes) => e.id !== id);
+      setList(toastListItem);
+    });
+  }, [expiredIds]);
 
   return {
     toastSmart,

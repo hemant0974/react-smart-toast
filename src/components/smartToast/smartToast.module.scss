@@ -15,12 +15,14 @@
   }
   &.top-center {
     top: 1rem;
-    left: 40%;
+    left: 50%;
+    transform: translateX(-50%);
     animation: toast-in-center 0.7s;
   }
   &.bottom-center {
     bottom: 1rem;
-    left: 40%;
+    left: 50%;
+    transform: translateX(-50%);
     animation: toast-in-center 0.7s;
   }
   &.bottom-right {
@@ -69,7 +71,7 @@
     }
     &.top-center,
     &.bottom-center {
-      animation: toast-in-center 0.7s;
+      animation: toast-in-center-inner 0.7s;
     }
 
     &:hover {
@@ -103,10 +105,10 @@
 }
 @keyframes toast-in-center {
   from {
-    transform: translateY(-100%);
+    top: -100%;
   }
   to {
-    transform: translateY(0);
+    top: 0;
   }
 }
 @keyframes toast-in-left {
@@ -115,5 +117,14 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes toast-in-center-inner {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }

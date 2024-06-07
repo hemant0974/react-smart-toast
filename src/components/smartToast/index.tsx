@@ -1,4 +1,3 @@
-import { useCallback, useEffect } from "react";
 import styles from "./smartToast.module.scss";
 import { variantClasses } from "../../constants/buttonList";
 
@@ -24,24 +23,10 @@ export interface ISmartToastProps {
 }
 
 const SmartToast = ({ toastlist, position, setList }: ISmartToastProps) => {
-  const deleteToast = useCallback(
-    (id: string) => {
-      const toastListItem = toastlist.filter((e: IToastTypes) => e.id !== id);
-      setList(toastListItem);
-    },
-    [toastlist, setList]
-  );
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (toastlist.length) {
-        deleteToast(toastlist[0].id);
-      }
-    }, 4000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [toastlist, deleteToast]);
+  const deleteToast = (id: string) => {
+    const toastListItem = toastlist.filter((e: IToastTypes) => e.id !== id);
+    setList(toastListItem);
+  };
 
   return (
     <div className={`${styles.container} ${styles[position]}`}>

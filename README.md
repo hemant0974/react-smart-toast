@@ -1,5 +1,3 @@
-App hosted on vercel :- https://react-smart-toast.vercel.app
-
 Run project:-
 npm i
 npm start
@@ -54,10 +52,10 @@ return (
 <button onClick={() => toastSmart("Hello, this is a toast!")}>
 Show Toast
 </button>
-<button onClick={() => setToastPosition("top-center")}>
+<button onClick={() => setToastPosition("top-right")}>
 Move Toast to Top Center
 </button>
-<SmartToastComponent />
+{SmartToastComponent}
 </div>
 );
 };
